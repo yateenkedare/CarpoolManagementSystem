@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
-
+<link href="CSS/StyleStyles.css" rel="stylesheet" type="text/css" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Home : Carpool Management</title>
