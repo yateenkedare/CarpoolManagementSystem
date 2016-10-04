@@ -16,7 +16,6 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            
             mySqlConnection.Open();
             queryString = "INSERT INTO `test`.`test` (`Name`) VALUES ('" + NameTextBox.Text + "');";
             mySqlCommand = new MySqlCommand(queryString, mySqlConnection);
@@ -27,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
             mySqlConnection.Open();
             queryString = "SELECT Name FROM `test`.`test` order by Number desc limit 1";
             mySqlCommand = new MySqlCommand(queryString, mySqlConnection);
-            mySqlCommand.ExecuteNonQuery();
+            //mySqlCommand.ExecuteNonQuery();
             mySqlDataReader = mySqlCommand.ExecuteReader();
             
             if (mySqlDataReader.HasRows)
