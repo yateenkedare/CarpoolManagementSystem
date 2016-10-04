@@ -1,40 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
+using MySql.Data.MySqlClient;
 public partial class _Default : System.Web.UI.Page
 {
-    MySql.Data.MySqlClient.MySqlConnection mySqlConnection;
-    MySql.Data.MySqlClient.MySqlCommand mySqlCommand;
-    MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader;
+    MySqlConnection mySqlConnection;
+    MySqlCommand mySqlCommand;
+    MySqlDataReader mySqlDataReader;
     String queryString,name;
     protected void Page_Load(object sender, EventArgs e)
     {
         String connString = "server=localhost;user id=root;password=password;database=test;persistsecurityinfo=True";
-        mySqlConnection = new MySql.Data.MySqlClient.MySqlConnection(connString);
+        mySqlConnection = new MySqlConnection(connString);
     }
 
     protected void SubmitNameMethod(object sender, EventArgs e)
     {
         try
         {
+            
             mySqlConnection.Open();
             queryString = "INSERT INTO `test`.`test` (`Name`) VALUES ('" + NameTextBox.Text + "');";
-            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(queryString, mySqlConnection);
-            mySqlCommand.ExecuteReader();
+            mySqlCommand = new MySqlCommand(queryString, mySqlConnection);
+            mySqlCommand.ExecuteNonQuery();
             mySqlConnection.Close();
             Response.Write("<script>alert('Name Entered successfully');</script>");
 
-
             mySqlConnection.Open();
-            queryString = "SELECT * FROM `test`.`test` ORDER BY 'Number' DESC LIMIT 1";
-            mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(queryString, mySqlConnection);
+            queryString = "SELECT Name FROM `test`.`test` order by Number desc limit 1";
+            mySqlCommand = new MySqlCommand(queryString, mySqlConnection);
+            mySqlCommand.ExecuteNonQuery();
             mySqlDataReader = mySqlCommand.ExecuteReader();
-            mySqlConnection.Close();
-
+            
             if (mySqlDataReader.HasRows)
             {
                 while (mySqlDataReader.Read())
@@ -43,7 +38,7 @@ public partial class _Default : System.Web.UI.Page
                 }
                 name = mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("Name"));
             }
-            
+            mySqlConnection.Close();
             Response.Write("<script>alert('Hello "+ name + "');</script>");
         }
         catch
