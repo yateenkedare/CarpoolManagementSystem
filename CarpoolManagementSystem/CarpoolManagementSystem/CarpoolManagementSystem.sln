@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolManagementSystem", "CarpoolManagementSystem\CarpoolManagementSystem.csproj", "{7CEEF3DA-166D-49A9-8F1A-BD5772529D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSTest", "CMSTest\CMSTest.csproj", "{40DDC72C-E68F-4A8E-A880-69926BC82294}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarpoolManagementSystemTest", "CMSTest\CarpoolManagementSystemTest.csproj", "{40DDC72C-E68F-4A8E-A880-69926BC82294}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
