@@ -6,12 +6,27 @@
 <head runat="server">
     <title>Home : Carpool Management</title>
 </head>
+
+    <script>
+        function SayHello(name)
+        {
+            document.getElementByID(NameLabel).value = name;
+        }
+
+
+    </script>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="post">
     <div>
         <asp:TextBox ID="NameTextBox" placeholder="What is your name?" runat="server"></asp:TextBox>
         <asp:Button ID="OKButton" runat="server" Text="Ok" onClick="SubmitNameMethod"/>
+
     </div>
+        <br />
+        <br />
+        <br />
+
+        <asp:Label ID="NameLabel" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

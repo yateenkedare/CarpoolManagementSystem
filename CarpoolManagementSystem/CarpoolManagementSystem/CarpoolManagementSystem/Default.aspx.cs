@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Web.Configuration;
+using System.Web.UI;
 
 namespace CarpoolManagementSystem
 {
@@ -42,7 +43,8 @@ namespace CarpoolManagementSystem
                     name = mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("Name"));
                 }
                 mySqlConnection.Close();
-                Response.Write("<script>alert('Hello " + name + "');</script>");
+                this.NameLabel.Text = "Hello" + name;
+                
             }
             catch
             {
