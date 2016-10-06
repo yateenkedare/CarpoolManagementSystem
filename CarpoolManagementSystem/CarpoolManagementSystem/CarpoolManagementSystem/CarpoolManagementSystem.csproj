@@ -121,7 +121,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="JS\" />
     <Folder Include="WebForm\" />
   </ItemGroup>
   <PropertyGroup>
