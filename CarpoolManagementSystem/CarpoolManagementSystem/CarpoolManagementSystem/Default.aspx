@@ -6,15 +6,6 @@
 <head runat="server">
     <title>Home : Carpool Management</title>
 </head>
-
-    <script>
-        function SayHello(name)
-        {
-            document.getElementByID(NameLabel).value = name;
-        }
-
-
-    </script>
 <body>
     <form id="form1" runat="server" method="post">
     <div>
