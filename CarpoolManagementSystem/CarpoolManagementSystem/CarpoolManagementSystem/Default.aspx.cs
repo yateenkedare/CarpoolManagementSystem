@@ -12,13 +12,13 @@ namespace CarpoolManagementSystem
         MySqlDataReader mySqlDataReader;
         String queryString, name;
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             String connString = "server=localhost;user id=root;password=password;database=test;persistsecurityinfo=True";
             mySqlConnection = new MySqlConnection(connString);
         }
 
-        protected void SubmitNameMethod(object sender, EventArgs e)
+        public void SubmitNameMethod(object sender, EventArgs e)
         {
             try
             {
