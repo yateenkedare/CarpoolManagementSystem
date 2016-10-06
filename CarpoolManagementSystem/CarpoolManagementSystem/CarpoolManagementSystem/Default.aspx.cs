@@ -43,7 +43,7 @@ namespace CarpoolManagementSystem
                     name = mySqlDataReader.GetString(mySqlDataReader.GetOrdinal("Name"));
                 }
                 mySqlConnection.Close();
-                this.NameLabel.Text = "Hello" + name;
+                this.NameLabel.Text = "Hello " + name;
                 
             }
             catch
