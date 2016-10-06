@@ -107,6 +107,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\StyleSheet1.css" />
     <Content Include="Default.aspx" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
