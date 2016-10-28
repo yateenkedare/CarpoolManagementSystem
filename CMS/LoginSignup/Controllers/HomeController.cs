@@ -29,8 +29,12 @@ namespace LoginSignup.Controllers
 
         public ActionResult TripDetails()
         {
-
             return View();
         }
-    }
+
+        public ActionResult AddTrip()
+        {
+            return View();
+        }
+}
 }

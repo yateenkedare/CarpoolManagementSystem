@@ -272,9 +272,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\SearchBar.cshtml" />
-    <Content Include="Views\Shared\TripTableDetails.cshtml" />
+    <Content Include="Views\Shared\_SearchBar.cshtml" />
+    <Content Include="Views\Shared\_TripTableDetails.cshtml" />
     <Content Include="Views\Home\TripDetails.cshtml" />
+    <Content Include="Views\Home\AddTrip.cshtml" />
+    <Content Include="Views\Shared\_AddTripDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
