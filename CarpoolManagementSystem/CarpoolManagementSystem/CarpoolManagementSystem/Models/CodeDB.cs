@@ -42,7 +42,7 @@ namespace LoginSignup.Models
                 con.Close();
                 return bRet;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 return false;
             }
@@ -77,14 +77,13 @@ namespace LoginSignup.Models
                 }
                 return this.ToInt(iLastID);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }
         }
         public SqlDataReader DataRetrieve(string sql)
         {
-            int iLastID = 0;
             string szQuery = sql + ";SELECT @@Identity;";
             SqlDataReader reader=null;
             try
