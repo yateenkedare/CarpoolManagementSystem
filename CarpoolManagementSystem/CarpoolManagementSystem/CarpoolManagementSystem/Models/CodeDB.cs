@@ -16,9 +16,9 @@ namespace LoginSignup.Models
         //open connection
         public bool Open(string Connection = "DefaultConnection")
         {
-            con = new SqlConnection(@WebConfigurationManager.ConnectionStrings[Connection].ToString());
             try
             {
+                con = new SqlConnection(@WebConfigurationManager.ConnectionStrings[Connection].ToString());
                 bool bRet = true;
                 if (con.State.ToString() != "Open")
                 {

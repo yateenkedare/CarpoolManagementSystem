@@ -17,7 +17,7 @@ namespace LoginSignup.Models
 
         [StringLength(20)]
         [Required]
-        public /*DateTime*/string date { get; set; }
+        public string date { get; set; }
 
     }
 }
