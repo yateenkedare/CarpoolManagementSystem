@@ -19,8 +19,6 @@ namespace LoginSignup.Controllers
             {
                 return Content(bStatus.ToString());
             }
-
-            return View();
         }
     }
 }

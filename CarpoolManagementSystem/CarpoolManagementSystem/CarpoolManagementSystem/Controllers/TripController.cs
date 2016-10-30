@@ -86,7 +86,7 @@ namespace LoginSignup.Controllers
                 Trips.Add(details);
             }
             DB.Close();
-            return View(Trips);
+            return View("ShowTripData", Trips);
         }
     }
 }
