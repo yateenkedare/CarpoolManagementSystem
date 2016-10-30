@@ -26,7 +26,7 @@ namespace LoginSignup.Models
                 }
                 return bRet;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 return false;
             }
@@ -98,7 +98,7 @@ namespace LoginSignup.Models
                 }
                 return reader;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
