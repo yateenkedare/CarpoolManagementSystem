@@ -11,7 +11,7 @@ namespace LoginSignup.Models
     public class CodeDB
     {
         //variable connection
-        protected SqlConnection con;
+        private SqlConnection con;
 
         //open connection
         public bool Open(string Connection = "DefaultConnection")
@@ -19,12 +19,16 @@ namespace LoginSignup.Models
             try
             {
                 con = new SqlConnection(@WebConfigurationManager.ConnectionStrings[Connection].ToString());
-                bool bRet = true;
-                if (con.State.ToString() != "Open")
+                if (con != null)
                 {
-                    con.Open();
+                    if (con.State.ToString() != "Open")
+                    {
+                        con.Open();
+                    }
+                    return true;
                 }
-                return bRet;
+                else
+                    return false;
             }
             catch (SqlException)
             {
