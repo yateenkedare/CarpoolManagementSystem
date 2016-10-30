@@ -97,12 +97,6 @@ D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\Ca
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\EntityFramework.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\EntityFramework.SqlServer.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.Agent.Intercept.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.DependencyCollector.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.PerfCounterCollector.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.ServerTelemetryChannel.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.Web.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.WindowsServer.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.ApplicationInsights.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AspNet.Identity.Core.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -127,11 +121,6 @@ D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\Ca
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\System.Web.WebPages.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\System.Web.WebPages.Razor.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\WebGrease.dll
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.DependencyCollector.xml
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.ServerTelemetryChannel.xml
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.Web.xml
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.AI.WindowsServer.xml
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.ApplicationInsights.xml
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\System.Web.Helpers.xml
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\System.Web.Mvc.xml

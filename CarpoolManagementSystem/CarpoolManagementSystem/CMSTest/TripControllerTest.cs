@@ -62,5 +62,12 @@ namespace CMSTest
             var result = controller.ShowTripData(new LoginSignup.Models.SearchBarModel()) as ViewResult;
             Assert.AreEqual("ShowTripData", result.ViewName);
         }
+
+        public void TestMethod2()
+        {
+            var controller = new LoginSignup.Controllers.TripController();
+            var result = controller.SaveDataTrip(new LoginSignup.Models.TripModel()) as ViewResult;
+            Assert.AreEqual("ShowTripData", result.ViewName);
+        }
     }
 }
