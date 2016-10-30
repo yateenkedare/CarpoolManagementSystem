@@ -156,6 +156,5 @@ D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\Ca
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.Owin.Security.Google.xml
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.Owin.Security.Twitter.xml
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\obj\Debug\CarpoolManagementSystem.csprojResolveAssemblyReference.cache
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\obj\Debug\LoginSignup.dll
 D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CarpoolManagementSystem\obj\Debug\LoginSignup.pdb

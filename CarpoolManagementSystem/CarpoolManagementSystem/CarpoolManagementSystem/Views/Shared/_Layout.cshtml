@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Carpool Management System</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -27,7 +28,7 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
-            
+
         </div>
     </div>
     <div class="container body-content">
@@ -37,8 +38,6 @@
             <p>&copy; @DateTime.Now.Year - Carpool Management System Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

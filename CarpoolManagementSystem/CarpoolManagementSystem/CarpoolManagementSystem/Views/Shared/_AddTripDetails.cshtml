@@ -1,5 +1,14 @@
 ﻿@using Microsoft.AspNet.Identity
 @model LoginSignup.Models.TripModel
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+</script>
 
 @using (Html.BeginForm("SaveDataTrip", "Trip", new { @id = "Form", @class= "form-group", role = "form" }, FormMethod.Post))
 {
@@ -28,7 +37,7 @@
         <br /><br /><br />
         <label for="exampleInputName2" class="col-sm-2 control-label">Date *</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.date, new { @class = "form-control", placeholder = "01/01/2016", required = "required", tabindex = 3 })
+            @Html.TextBoxFor(m => m.date, new { @id="datepicker", @class = "form-control", placeholder = "01/01/2016", required = "required", tabindex = 3 })
             @Html.ValidationMessageFor(m => m.date)
         </div>
     </div>
