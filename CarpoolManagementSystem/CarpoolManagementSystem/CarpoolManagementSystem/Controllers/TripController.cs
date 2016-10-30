@@ -41,7 +41,24 @@ namespace LoginSignup.Controllers
 
             if (bRet)
             {
-                i = DB.DataRetrieve("select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "'");
+                string query;
+                if (f.source == null && f.destination == null)
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips";
+                }
+                else if (f.destination == null)
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "'"; 
+                }
+                else if (f.source == null)
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "'";
+                }
+                else
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "'";
+                }
+                i = DB.DataRetrieve(query);
                 if (i != null)
                 {
                     ModelState.AddModelError("Success", "Save Success");
