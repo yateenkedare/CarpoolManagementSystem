@@ -8,13 +8,6 @@ namespace CMSTest
     public class AccountControllerTest
     {
         [TestMethod]
-        public void LoginValidation()
-        {
-            AccountController ac = new AccountController();
-            var result = ac.Register() as ViewResult;
-            Assert.AreEqual("Register", result.ViewName);
-        }
-        [TestMethod]
         public void RegisterReturnTest()
         {
             var controller = new AccountController();
