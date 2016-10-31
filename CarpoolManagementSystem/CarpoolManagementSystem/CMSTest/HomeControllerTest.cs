@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LoginSignup.Controllers;
 using LoginSignup.Models;
 using System.Web.Mvc;
-//using Moq;
 
 namespace LoginSignup.test
 {
@@ -38,13 +37,6 @@ namespace LoginSignup.test
             var result = controller.TripDetails() as ViewResult;
             Assert.AreEqual("TripDetails", result.ViewName);
         }
-        //[TestMethod]
-        //public void AddTripReturnTest()
-        //{
-        //    var controller = new HomeController();
-        //    var result = controller.AddTrip() as ViewResult;
-        //    Assert.AreEqual("AddTrip", result.ViewName);
-        //}
         [TestMethod]
         public void AboutReturnTest()
         {
@@ -67,16 +59,6 @@ namespace LoginSignup.test
             var result = controller.Register() as ViewResult;
             Assert.AreEqual("Register", result.ViewName);
         }
-        //[TestMethod]
-        //public void successRegisterReturnTest()
-        //{
-        //    var controller = new AccountController();
-        //    RegisterViewModel model = new RegisterViewModel { Email = "bhanu@gmail.com", Password = "bhanu1995", ConfirmPassword = "bhanu1995" };
-        //    var result = controller.Register(model).Result;
-        //    Assert.IsTrue(result is ViewResult);
-        //    ////var result = controller.Register() as ViewResult;
-        //    ////Assert.AreEqual("Register", result.ViewName);
-        //}
     }
 }
 

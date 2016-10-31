@@ -11,7 +11,7 @@ namespace LoginSignup.Models
     public class CodeDB
     {
         //variable connection
-        private SqlConnection con;
+        private SqlConnection con = null;
 
         //open connection
         public bool Open(string Connection = "DefaultConnection")

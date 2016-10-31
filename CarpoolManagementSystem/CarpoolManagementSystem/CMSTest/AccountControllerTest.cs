@@ -4,19 +4,9 @@ using System.Web.Mvc;
 
 namespace CMSTest
 {
-    /// <summary>
-    /// Summary description for AccountController
-    /// </summary>
     [TestClass]
     public class AccountControllerTest
     {
-
-
-        //public class ResolveAssemblyReference : TaskExtension
-        //{
-
-        //}
-
         [TestMethod]
         public void LoginValidation()
         {
@@ -24,5 +14,12 @@ namespace CMSTest
             var result = ac.Register() as ViewResult;
             Assert.AreEqual("Register", result.ViewName);
         }
-    }
+        [TestMethod]
+        public void RegisterReturnTest()
+        {
+            var controller = new AccountController();
+            var result = controller.Register() as ViewResult;
+            Assert.AreEqual("Register", result.ViewName);
+        }
+    }   
 }
