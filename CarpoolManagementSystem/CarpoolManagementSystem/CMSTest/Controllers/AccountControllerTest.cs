@@ -14,5 +14,20 @@ namespace CMSTest
             var result = controller.Register() as ViewResult;
             Assert.AreEqual("Register", result.ViewName);
         }
+        [TestMethod]
+        public void LoginReturnTest()
+        {
+            var controller = new AccountController();
+            var result = controller.Login("test") as ViewResult;
+            Assert.AreEqual("Login", result.ViewName);
+        }
+
+        [TestMethod]
+        public void ExternalLoginFailTest()
+        {
+            var controller = new AccountController();
+            var result = controller.ExternalLoginFailure() as ViewResult;
+            Assert.AreEqual("Login Failed", result.ViewName);
+        }
     }   
 }

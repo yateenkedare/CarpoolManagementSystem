@@ -18,7 +18,7 @@ namespace LoginSignup.Models
         {
             try
             {
-                con = new SqlConnection(@WebConfigurationManager.ConnectionStrings[Connection].ToString());
+                con = new SqlConnection(@WebConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
                 if (con != null)
                 {
                     if (con.State.ToString() != "Open")

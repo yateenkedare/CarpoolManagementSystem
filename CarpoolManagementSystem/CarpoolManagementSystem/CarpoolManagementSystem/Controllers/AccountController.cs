@@ -58,7 +58,7 @@ namespace LoginSignup.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View("Login");
         }
 
         //
@@ -400,7 +400,7 @@ namespace LoginSignup.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
-            return View();
+            return View("Login Failed");
         }
 
         protected override void Dispose(bool disposing)
