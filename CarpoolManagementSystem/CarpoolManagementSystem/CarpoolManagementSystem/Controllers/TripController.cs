@@ -70,22 +70,26 @@ namespace LoginSignup.Controllers
             }
 
             List<TripModel> Trips = new List<TripModel>();
-            while (i.Read())
+            try
             {
-                var details = new TripModel();
-                details.source = i["source"].ToString().ToUpper();
-                details.destination = i["destination"].ToString().ToUpper();
-                
-                char[] delim = { ' ' };
-                details.date = i["date"].ToString().Split(delim)[0];
-                details.carAvailable = Convert.ToBoolean(i["carAvailable"]);
-                details.description = i["description"].ToString().ToUpperInvariant();
-                details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
-                details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
+                while (i.Read())
+                {
+                    var details = new TripModel();
+                    details.source = i["source"].ToString().ToUpper();
+                    details.destination = i["destination"].ToString().ToUpper();
 
-                Trips.Add(details);
+                    char[] delim = { ' ' };
+                    details.date = i["date"].ToString().Split(delim)[0];
+                    details.carAvailable = Convert.ToBoolean(i["carAvailable"]);
+                    details.description = i["description"].ToString().ToUpperInvariant();
+                    details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
+                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
+
+                    Trips.Add(details);
+                }
+                DB.Close();
             }
-            DB.Close();
+            catch (Exception) { }
             return View("ShowTripData", Trips);
         }
     }

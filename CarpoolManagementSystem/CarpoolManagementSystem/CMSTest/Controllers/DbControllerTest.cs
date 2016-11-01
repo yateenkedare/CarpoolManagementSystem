@@ -35,19 +35,21 @@ namespace CMSTest
         //
         #endregion
 
-        //[TestMethod]
-        //public void CheckDbInsert()
-        //{
-        //    var controller = new CodeDB();
-        //    var test = controller.Open();
-            
-        //}
-        //[TestMethod]
-        //public void CheckDbRetrive()
-        //{
-        //    var controller = new CodeDB();
-        //    var test = controller.Close();
-        //    Assert.AreEqual(test, true);
-        //}
+        [TestMethod]
+        public void CheckDbInsert()
+        {
+            var controller = new CodeDB();
+            var result = controller.Open();
+            Assert.AreNotEqual(result,true);
+
+        }
+
+        [TestMethod]
+        public void CheckDbRetrive()
+        {
+            var controller = new CodeDB();
+            var test = controller.Close();
+            Assert.AreNotEqual(test, true);
+        }
     }
 }

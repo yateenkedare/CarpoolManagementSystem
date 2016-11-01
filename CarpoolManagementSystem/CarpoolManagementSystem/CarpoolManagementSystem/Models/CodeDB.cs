@@ -18,7 +18,14 @@ namespace LoginSignup.Models
         {
             try
             {
-                con = new SqlConnection(@WebConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+                try
+                {
+                    con = new SqlConnection(@WebConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
+                }
+                catch (NullReferenceException)
+                {
+                    return false;
+                }
                 if (con != null)
                 {
                     if (con.State.ToString() != "Open")
@@ -41,12 +48,10 @@ namespace LoginSignup.Models
         {
             try
             {
-                bool bRet = true;
-
                 con.Close();
-                return bRet;
+                return true;
             }
-            catch (SqlException)
+            catch (NullReferenceException)
             {
                 return false;
             }

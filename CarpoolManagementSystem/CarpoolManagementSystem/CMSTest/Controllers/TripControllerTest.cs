@@ -10,7 +10,6 @@ namespace CMSTest
     public class TripControllerTest
     {
         [TestMethod]
-        [ExpectedException(typeof(System.NullReferenceException))]
         public void ShowTripReturnTest()
         {
             var controller = new TripController();
