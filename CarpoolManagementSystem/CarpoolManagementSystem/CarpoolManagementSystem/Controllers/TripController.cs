@@ -92,5 +92,10 @@ namespace LoginSignup.Controllers
             catch (Exception) { }
             return View("ShowTripData", Trips);
         }
+        
+        public ActionResult TripDetails()
+        {
+            return View();
+        } 
     }
 }
