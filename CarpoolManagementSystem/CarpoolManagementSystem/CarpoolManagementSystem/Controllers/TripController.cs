@@ -42,21 +42,37 @@ namespace LoginSignup.Controllers
             if (bRet)
             {
                 string query;
-                if (f.source == null && f.destination == null)
+                if (f.source == null && f.destination == null && f.date == null)   //all fields null
                 {
                     query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips";
                 }
-                else if (f.destination == null)
+                else if (f.source == null && f.destination == null)      //only date is provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "'"; 
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where date='" + f.date + "'";
                 }
-                else if (f.source == null)
+                else if (f.source == null && f.date == null)    //only destination is provided
                 {
                     query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "'";
                 }
-                else
+                else if (f.destination == null && f.date == null)   //only source is provided
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "'";
+                }
+                else if (f.date == null)         //Source and destination are provided
                 {
                     query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "'";
+                }
+                else if (f.destination == null)      //Source and date are provided
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and date='" + f.date + "'";
+                }
+                else if (f.source == null)           //Source and destination are provided
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "' and date='" + f.date + "'";
+                }
+                else               //all fields are provided
+                {
+                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "' and date='" + f.date + "'";
                 }
                 i = DB.DataRetrieve(query);
                 if (i != null)
