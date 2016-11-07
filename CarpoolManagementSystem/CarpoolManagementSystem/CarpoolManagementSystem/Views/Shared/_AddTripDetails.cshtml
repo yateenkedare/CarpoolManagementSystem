@@ -9,21 +9,25 @@
     $( "#datepicker" ).datepicker();
   });
 </script>
-<script type="text/javascript">
-    function checkCheckboxfor() {
-        var a = document.getElementById("chbk");
-        var b = document.getElementById("ifchecked");
-        var c = document.getElementById("ifcheckeds");
 
-        if (a.checked) {
-            b.disabled = false;
-            c.disabled = false;
-        }
-        else {
-            b.disabled = true;
-            c.disabled = true;
-        }
-    }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#1").hide();
+        $("#2").hide();
+    });
+    $(function () {
+        $("#carAvailable").click(function () {
+            if ($(this).is(':checked')) {
+                $("#1").show();
+                $("#2").show();
+            }
+            else {
+                $("#1").hide();
+                $("#2").hide();
+            }
+        });
+    });
 </script>
 
 @using (Html.BeginForm("SaveDataTrip", "Trip", new { @id = "Form", @class= "form-group", role = "form" }, FormMethod.Post))
@@ -75,20 +79,20 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="1">
         <br /><br /><br />
         <label for="exampleInputName2" class="col-sm-2 control-label">Vacant Seats</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.vacant_seats, new { @id = "ifcheckeds", @class = "form-control", tabindex = 5, disabled = "true" })
+            @Html.TextBoxFor(m => m.vacant_seats, new { @id = "ifcheckeds", @class = "form-control", tabindex = 5 })
             @Html.ValidationMessageFor(m => m.vacant_seats)
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="2">
         <br /><br /><br />
         <label for="exampleInputName2" class="col-sm-2 control-label">Estimated Cost ($)</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.estimated_cost, new {@id="ifchecked", @class = "form-control", tabindex = 6, disabled="true" })
+            @Html.TextBoxFor(m => m.estimated_cost, new {@id="ifchecked", @class = "form-control", tabindex = 6 })
             @Html.ValidationMessageFor(m => m.estimated_cost)
         </div>
     </div>
