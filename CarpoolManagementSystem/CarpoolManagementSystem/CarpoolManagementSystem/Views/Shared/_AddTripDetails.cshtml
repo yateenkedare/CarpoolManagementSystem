@@ -10,14 +10,13 @@
   });
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#1").hide();
         $("#2").hide();
     });
     $(function () {
-        $("#carAvailable").click(function () {
+        $("#chbk").click(function () {
             if ($(this).is(':checked')) {
                 $("#1").show();
                 $("#2").show();
