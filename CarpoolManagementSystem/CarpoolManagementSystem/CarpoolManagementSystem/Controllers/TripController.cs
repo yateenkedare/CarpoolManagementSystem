@@ -44,35 +44,35 @@ namespace LoginSignup.Controllers
                 string query;
                 if (f.source == null && f.destination == null && f.date == null)   //all fields null
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips";
                 }
                 else if (f.source == null && f.destination == null)      //only date is provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where date='" + f.date + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where date='" + f.date + "'";
                 }
                 else if (f.source == null && f.date == null)    //only destination is provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "'";
                 }
                 else if (f.destination == null && f.date == null)   //only source is provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "'";
                 }
                 else if (f.date == null)         //Source and destination are provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "'";
                 }
                 else if (f.destination == null)      //Source and date are provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and date='" + f.date + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and date='" + f.date + "'";
                 }
                 else if (f.source == null)           //Source and destination are provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "' and date='" + f.date + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where destination='" + f.destination + "' and date='" + f.date + "'";
                 }
                 else               //all fields are provided
                 {
-                    query = "select source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "' and date='" + f.date + "'";
+                    query = "select id,source, destination, date, carAvailable, description, vacant_seats, estimated_cost from Trips where source='" + f.source + "' and destination='" + f.destination + "' and date='" + f.date + "'";
                 }
                 i = DB.DataRetrieve(query);
                 if (i != null)
@@ -100,6 +100,7 @@ namespace LoginSignup.Controllers
                     details.description = i["description"].ToString().ToUpperInvariant();
                     details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
                     details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
+                    details.id = Convert.ToInt32(i["id"]);
 
                     Trips.Add(details);
                 }
@@ -109,9 +110,34 @@ namespace LoginSignup.Controllers
             return View("ShowTripData", Trips);
         }
         
-        public ActionResult TripDetails()
+        public ActionResult TripDetails(int id)
         {
-            return View();
+            bool ret = DB.Open();
+            SqlDataReader i=null;
+            if (ret)
+            {
+                i = DB.DataRetrieve("select t.source,t.destination,t.date,t.vacant_seats,t.estimated_cost from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
+            }
+            var details = new TripModel();
+
+            try
+            {
+                while (i.Read())
+                {
+                    details.source = i["source"].ToString().ToUpper();
+                    details.destination = i["destination"].ToString().ToUpper();
+
+                    char[] delim = { ' ' };
+                    details.date = i["date"].ToString().Split(delim)[0];
+                    details.carAvailable = Convert.ToBoolean(i["carAvailable"]);
+                    details.description = i["description"].ToString().ToUpper();
+                    details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
+                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
+                }
+                DB.Close();
+            }
+            catch (Exception) { }
+            return View(details);
         } 
     }
 }

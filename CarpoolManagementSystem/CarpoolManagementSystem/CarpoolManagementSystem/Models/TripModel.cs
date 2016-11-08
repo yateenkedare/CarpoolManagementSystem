@@ -8,6 +8,8 @@ namespace LoginSignup.Models
     {
         public CodeDB DB = new CodeDB();
 
+        public int id { get; set; }
+
         [Required]
         public string source { get; set; }
 
