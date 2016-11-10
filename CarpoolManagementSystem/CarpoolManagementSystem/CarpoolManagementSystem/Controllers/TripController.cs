@@ -137,7 +137,7 @@ namespace LoginSignup.Controllers
                 DB.Close();
             }
             catch (Exception) { }
-            return View(details);
+            return View("TripDetails",details);
         } 
     }
 }
