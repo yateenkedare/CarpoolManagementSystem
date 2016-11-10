@@ -116,7 +116,7 @@ namespace LoginSignup.Controllers
             SqlDataReader i=null;
             if (ret)
             {
-                i = DB.DataRetrieve("select t.source,t.destination,t.date,t.vacant_seats,t.estimated_cost from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
+                i = DB.DataRetrieve("select * from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
             }
             var details = new TripModel();
 
@@ -132,7 +132,7 @@ namespace LoginSignup.Controllers
                     details.carAvailable = Convert.ToBoolean(i["carAvailable"]);
                     details.description = i["description"].ToString().ToUpper();
                     details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
-                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
+                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);                    
                 }
                 DB.Close();
             }
