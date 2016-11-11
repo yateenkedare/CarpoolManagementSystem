@@ -162,5 +162,16 @@ namespace LoginSignup.Controllers
             //catch - return 4
             return id;
         }
+
+        [HttpGet]
+        public bool ShowJoinButton(string id) {
+
+            //TODO
+            //retrive created by from Trips table using id
+            //check if current logged in user and created by user is same
+            //if same return false - do not show join button
+            //else return true - show join button
+            return false;
+        }
     }
 }

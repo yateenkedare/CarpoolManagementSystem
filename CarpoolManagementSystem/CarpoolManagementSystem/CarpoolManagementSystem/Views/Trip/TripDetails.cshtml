@@ -4,6 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
+    $( document ).ready(function() {
+        $.get('/Trip/ShowJoinButton', {'id': @Model.id},function(response){
+            if(response)
+            {
+                //TODO
+                //if response == false Hide button
+                //else show button
+            }
+        })
+
+    });
+
+
     $(function () {
         $("#jointrip").click(function () {
             $.get('/Trip/JoinTrip', {'id': @Model.id},function(response){
