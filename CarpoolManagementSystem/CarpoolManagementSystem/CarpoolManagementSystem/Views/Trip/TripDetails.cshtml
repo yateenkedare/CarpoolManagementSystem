@@ -9,6 +9,11 @@
             $.get('/Trip/JoinTrip', {'id': @Model.id},function(response){
                 if(response)
                 {
+                    //TODO
+                    //if response = 1 route to login page
+                    //if response = 2 then show alertbox saying 'you are already a part of this trip'
+                    //if response = 3 then show alertbox saying 'added to trip successfully'
+                    //if response = 4 then show alertbox for error
                     window.alert(response);
                 }
                 window.location.href = '@Url.Action("TripDetails", "Trip", new { id = Model.id  })';

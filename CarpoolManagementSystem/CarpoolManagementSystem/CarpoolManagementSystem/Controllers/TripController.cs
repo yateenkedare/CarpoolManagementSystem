@@ -157,6 +157,9 @@ namespace LoginSignup.Controllers
             //if the user exists then return 2
             //else 
             //add the user to the TripGroup table with id = id and people = curretUser and tripAdmin = false
+            //and return - 3
+            //above entire stuff will be inside try catch
+            //catch - return 4
             return id;
         }
     }
