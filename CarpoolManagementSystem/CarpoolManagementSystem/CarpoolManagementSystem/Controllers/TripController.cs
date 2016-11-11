@@ -167,11 +167,31 @@ namespace LoginSignup.Controllers
         public bool ShowJoinButton(string id) {
 
             //TODO
-            //retrive created by from Trips table using id
+            //retrive created_by from Trips table using id
             //check if current logged in user and created by user is same
             //if same return false - do not show join button
             //else return true - show join button
-            return false;
+
+            bool bReturn = false;
+            bool ret = DB.Open();
+            SqlDataReader i = null;
+            if (ret)
+            {
+                i = DB.DataRetrieve("select created_by from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
+            }
+            var details = new TripModel();
+
+            try
+            {
+                while (i.Read())
+                {
+                    //details.created_by = i["created_by"].ToString();
+                }
+                DB.Close();
+            }
+            catch (Exception) { }
+
+            return bReturn;
         }
     }
 }

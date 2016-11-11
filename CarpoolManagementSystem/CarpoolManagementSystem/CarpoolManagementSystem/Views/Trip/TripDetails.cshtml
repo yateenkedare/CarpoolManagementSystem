@@ -6,11 +6,14 @@
 <script>
     $( document ).ready(function() {
         $.get('/Trip/ShowJoinButton', {'id': @Model.id},function(response){
-            if(response)
+            //window.alert(response);
+            if(response == "False")
             {
-                //TODO
+                //TODO - DONE
                 //if response == false Hide button
                 //else show button
+                
+                $("input[type=submit]").attr('disabled','disabled');                
             }
         })
 
