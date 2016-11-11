@@ -72,7 +72,7 @@ namespace LoginSignup.Models
         //Insert into DB 
         public int DataInsert(string sql)
         {
-            int iLastID = 0;
+            int iLastID = 1;
             string szQuery = sql + ";SELECT @@Identity;";
             try
             {
@@ -82,7 +82,7 @@ namespace LoginSignup.Models
 
                     iLastID = ToInt(cmd.ExecuteReader());// */ExecuteNonQuery();
 
-                    iLastID = this.ToInt(cmd.ExecuteScalar());                    
+                    //iLastID = this.ToInt(cmd.ExecuteScalar());                    
                 }
                 return this.ToInt(iLastID);
             }

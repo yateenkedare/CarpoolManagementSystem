@@ -12,8 +12,8 @@
                 //TODO - DONE
                 //if response == false Hide button
                 //else show button
-                
-                $("input[type=submit]").attr('disabled','disabled');                
+
+                $("input[type=submit]").attr('disabled','disabled');
             }
         })
 
@@ -30,9 +30,31 @@
                     //if response = 2 then show alertbox saying 'you are already a part of this trip'
                     //if response = 3 then show alertbox saying 'added to trip successfully'
                     //if response = 4 then show alertbox for error
-                    window.alert(response);
+
+                    //window.alert(response);
+                    if(response == "1")
+                    {
+                        //Route to login page
+                        window.location.href = '@Url.Action("Login", "Account")';
+                    }
+                    else
+                    {
+                        if(response == "2")
+                        {
+                            window.alert("you are already a part of this trip");
+                        }
+                        else if(response == "3")
+                        {
+                            window.alert("added to trip successfully");
+                        }
+                        else if(response == "4")
+                        {
+                            window.alert("Error occured: added to trip un-successfully");
+                        }
+                        window.location.href = '@Url.Action("TripDetails", "Trip", new { id = Model.id  })';
+                    }
                 }
-                window.location.href = '@Url.Action("TripDetails", "Trip", new { id = Model.id  })';
+                //window.location.href = '@Url.Action("TripDetails", "Trip", new { id = Model.id  })';
             })
 
         });

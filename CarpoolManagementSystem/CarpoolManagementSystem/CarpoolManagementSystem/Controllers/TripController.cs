@@ -170,7 +170,44 @@ namespace LoginSignup.Controllers
             //and return - 3
             //above entire stuff will be inside try catch
             //catch - return 4
-            return id;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                SqlDataReader UsersInDatabase;
+
+                try
+                {
+                    if (DB.Open())
+                    {
+                        UsersInDatabase = DB.DataRetrieve("SELECT People from TripGroups WHERE Id='" + id + "'");
+                        while (UsersInDatabase.Read())
+                        {
+                            if (UsersInDatabase["People"].ToString() == User.Identity.Name)
+                                return "2";
+                        }
+                    }
+                    DB.Close();
+
+                    if (DB.Open())
+                    {
+                        string query = "INSERT INTO TripGroups(Id, People, TripAdmin) VALUES('" + id + "', '" + User.Identity.Name + "','False')";
+                        DB.DataInsert(query);
+                            return "3";
+                        
+                    }
+                    DB.Close();
+                }
+                catch
+                {
+
+                    return "4";
+                }
+            }
+            else
+                return "1";
+
+            return "4";
+
         }
 
         [HttpGet]
