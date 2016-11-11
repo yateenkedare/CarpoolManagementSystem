@@ -80,7 +80,7 @@ namespace LoginSignup.Models
                 {
                     SqlCommand cmd = new SqlCommand(szQuery, con);
 
-                    cmd.ExecuteReader();// */ExecuteNonQuery();
+                    iLastID = ToInt(cmd.ExecuteReader());// */ExecuteNonQuery();
 
                     iLastID = this.ToInt(cmd.ExecuteScalar());                    
                 }

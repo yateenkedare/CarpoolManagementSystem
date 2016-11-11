@@ -15,7 +15,7 @@ namespace LoginSignup.Controllers
         public ActionResult SaveDataTrip(TripModel f)
         {
             bool bRet = DB.Open();
-
+            int lastID = 0;
             if (bRet)
             {
                 int i = DB.DataInsert("INSERT INTO Trips(source, destination, date, created_by, carAvailable, description, vacant_seats, estimated_cost) VALUES('" + f.source + "', '" + f.destination + "', '" + Convert.ToDateTime(f.date) + "', '" + f.created_by + "', '" + f.carAvailable + "', '" + f.description + "', '" + f.vacant_seats + "', '" + f.estimated_cost + "')");
@@ -27,6 +27,16 @@ namespace LoginSignup.Controllers
                 {
                     ModelState.AddModelError("Error", "Save Error");
                 }
+                DB.Close();
+                DB.Open();
+                SqlDataReader LastId = DB.DataRetrieve("SELECT MAX(id) FROM Trips");
+                while (LastId.Read())
+                    lastID = Convert.ToInt32(LastId[0]);
+
+                DB.Close();
+                DB.Open();
+                if (lastID > 0)
+                    DB.DataInsert("INSERT INTO TripGroups(Id, People, TripAdmin) Values('" + lastID.ToString() + "','" + User.Identity.Name + "','" + f.carAvailable + "')");
                 //TODO
                 //extract the last id from TripTable
                 //enter the user with current Username in the TripGroup Table
