@@ -9,7 +9,7 @@ namespace LoginSignup.Controllers
     public class TripController : Controller
     {
         public CodeDB DB = new CodeDB();
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SaveDataTrip(TripModel f)
@@ -27,12 +27,16 @@ namespace LoginSignup.Controllers
                 {
                     ModelState.AddModelError("Error", "Save Error");
                 }
+                //TODO
+                //extract the last id from TripTable
+                //enter the user with current Username in the TripGroup Table
+                //if carAvailable is checked then make TripAdmin field of TripGroup table true
             }
 
             DB.Close();
 
             return RedirectToAction("Index", "Home");
-        }       
+        }
 
         public ActionResult ShowTripData(SearchBarModel f)
         {
@@ -109,11 +113,11 @@ namespace LoginSignup.Controllers
             catch (Exception) { }
             return View("ShowTripData", Trips);
         }
-        
+
         public ActionResult TripDetails(int id)
         {
             bool ret = DB.Open();
-            SqlDataReader i=null;
+            SqlDataReader i = null;
             if (ret)
             {
                 i = DB.DataRetrieve("select * from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
@@ -126,18 +130,34 @@ namespace LoginSignup.Controllers
                 {
                     details.source = i["source"].ToString().ToUpper();
                     details.destination = i["destination"].ToString().ToUpper();
-
+                    details.id = Convert.ToInt32(i["id"]);
                     char[] delim = { ' ' };
                     details.date = i["date"].ToString().Split(delim)[0];
                     details.carAvailable = Convert.ToBoolean(i["carAvailable"]);
                     details.description = i["description"].ToString().ToUpper();
                     details.vacant_seats = Convert.ToInt32(i["vacant_seats"]);
-                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);                    
+                    details.estimated_cost = Convert.ToInt32(i["estimated_cost"]);
                 }
                 DB.Close();
             }
             catch (Exception) { }
-            return View("TripDetails",details);
-        } 
+            return View("TripDetails", details);
+        }
+
+        [HttpGet]
+        public string JoinTrip(string id)
+        {
+            //TODO
+            //Check if user is logged in    
+            //if not logged in return 1
+            //else
+            //find the username of current user from ASPusers Table
+            //retrive all the usernames already present in the TripGroup Table
+            //check if the current username exists in the above retrived data
+            //if the user exists then return 2
+            //else 
+            //add the user to the TripGroup table with id = id and people = curretUser and tripAdmin = false
+            return id;
+        }
     }
 }
