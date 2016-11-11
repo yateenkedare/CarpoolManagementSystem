@@ -174,32 +174,41 @@ namespace LoginSignup.Controllers
         }
 
         [HttpGet]
-        public bool ShowJoinButton(string id) {
-
-            //TODO
+        public bool ShowJoinButton(string id)
+        {
             //retrive created_by from Trips table using id
             //check if current logged in user and created by user is same
             //if same return false - do not show join button
             //else return true - show join button
 
-            bool bReturn = false;
-            bool ret = DB.Open();
-            SqlDataReader i = null;
-            if (ret)
-            {
-                i = DB.DataRetrieve("select created_by from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
-            }
+            bool bReturn = true;
             var details = new TripModel();
+            SqlDataReader i = null;
 
             try
             {
+                bool ret = DB.Open();
+                if (ret)
+                {
+                    i = DB.DataRetrieve("select Email from Trips t INNER JOIN AspNetUsers u ON u.id=t.created_by where t.id=" + id);
+                }
+
                 while (i.Read())
                 {
-                    //details.created_by = i["created_by"].ToString();
+                    string createdByFromTable = i["Email"].ToString();
+
+                    if (createdByFromTable == User.Identity.Name)
+                    {
+                        bReturn = false;
+                        break;
+                    }
                 }
                 DB.Close();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                return bReturn;
+            }
 
             return bReturn;
         }

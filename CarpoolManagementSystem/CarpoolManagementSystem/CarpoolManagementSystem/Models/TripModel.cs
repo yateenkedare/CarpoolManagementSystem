@@ -47,7 +47,5 @@ namespace LoginSignup.Models
         public int vacant_seats { get; set; }
         
         public float estimated_cost { get; set; }
-
-        //public string created_by { get; set; }
     }
 }
