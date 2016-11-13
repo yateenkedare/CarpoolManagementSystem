@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LoginSignup.Controllers;
 using LoginSignup.Models;
 using System.Web.Mvc;
+using System.Data.SqlClient;
+
 namespace CMSTest
 {
     /// <summary>
@@ -47,9 +49,17 @@ namespace CMSTest
         [TestMethod]
         public void CheckDbRetrive()
         {
-            var controller = new CodeDB();
-            var test = controller.Close();
-            Assert.AreNotEqual(test, true);
+            CodeDB DB = new CodeDB();
+            bool x = DB.Open();
+            if (x)
+            {
+                string query = "select Email from AspNetUsers where Email=" + "koushikkashojjula@gmail.com";
+
+                SqlDataReader sd = DB.DataRetrieve(query);
+                sd.Read();
+                Assert.AreEqual("koushikkashojjula@gmail.com", sd["Email"].ToString());
+
+            }
         }
     }
 }

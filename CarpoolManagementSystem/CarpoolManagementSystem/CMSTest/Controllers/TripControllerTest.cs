@@ -21,5 +21,23 @@ namespace CMSTest
             var result = controller.ShowTripData(searchbarmodel) as ViewResult;
             Assert.AreEqual("ShowTripData", result.ViewName);
         }
+
+        [TestMethod]
+        public void TripdetailsReturnTest()
+        {
+            var controller = new TripController();
+            var DB = new CodeDB();
+            var result = controller.TripDetails(7) as ViewResult;
+            Assert.AreEqual("TripDetails", result.ViewName);
+        }
+
+        [TestMethod]
+        public void ShowTripTest()
+        {
+            var controller = new TripController();
+            CodeDB DB = new CodeDB();
+            var result = controller.ShowJoinButton("7");
+            Assert.AreEqual(true, result);
+        }
     }
 }
