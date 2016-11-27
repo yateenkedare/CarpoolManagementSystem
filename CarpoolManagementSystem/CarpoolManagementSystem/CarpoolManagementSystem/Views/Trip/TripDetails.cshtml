@@ -3,6 +3,7 @@
     ViewBag.Title = "TripDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script>
     $( document ).ready(function() {
         $.get('/Trip/ShowJoinButton', {'id': @Model.id},function(response){
@@ -16,7 +17,6 @@
                 $("input[type=submit]").attr('disabled','disabled');
             }
         })
-
     });
 
 
@@ -59,7 +59,15 @@
 
         });
     });
+
+    $(function () {
+        $("#ContactAdmin").click(function () {            
+            window.alert("Contacting Trip Admin");
+        });
+    });
+
 </script>
+
 <h2>Trip Details</h2>
 
 @Html.ValidationSummary()
@@ -115,6 +123,8 @@
 <br /><br /><br />
 
 <input type="submit" class="btn btn-primary" value="Join" name="Add" id="jointrip" onclick="JoinTripFunction()" />
+
+<input type="submit" class="btn btn-primary" value="Contact Trip Admin" name="ContactAdmin" id="ContactAdmin" />
 
 <link href="~/Content/bootstrap-superhero.css" rel="stylesheet" />
 
