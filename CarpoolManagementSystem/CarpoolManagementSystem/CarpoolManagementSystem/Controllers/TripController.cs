@@ -3,6 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace LoginSignup.Controllers
 {
@@ -208,6 +209,39 @@ namespace LoginSignup.Controllers
 
             return "4";
 
+        }
+
+        [HttpGet]
+        public string sendEmail(string id)
+        {
+            //try
+            //{
+
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential("carpoolmanagementsystem@gmail.com", "Passw0rd!_");
+
+                
+                //Setting From , To and CC
+                MailAddress From = new MailAddress("carpoolmanagementsystem@gmail.com");
+                MailAddress To = new MailAddress("yateenkedare95@gmail.com");
+
+                MailMessage mail = new MailMessage(From, To);
+                mail.Body = "Some text";
+                mail.Subject = "test message 1";
+
+
+                client.Send(mail);
+                return "success";
+            //}
+            //catch {
+            //    return "fail";
+            //}
         }
 
         [HttpGet]
