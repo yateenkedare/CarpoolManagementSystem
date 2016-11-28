@@ -62,7 +62,11 @@
 
     $(function () {
         $("#ContactAdmin").click(function () {            
-            window.alert("Contacting Trip Admin");
+            //window.alert("Contacting Trip Admin");
+            ///TODO:
+            //open popup to accept email body with send button
+            //invoke sendEmail function
+            //display success or faliure message according to the value returned by sendEmail function
         });
     });
 
@@ -120,11 +124,32 @@
     </div>
 </div>
 
+<div class="modal fade" id="article-editor" style="left: 25%;right:25%;
+          -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+             -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+               -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+                  transition: opacity 0.3s linear, left 0.3s ease-out;">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3>Contact Trip Admin</h3>
+    </div>
+    <div class="modal-body" style="max-width: 1000px">
+        <div class="col-xs-12">
+            <input type="text" placeholder="Enter message" />
+        </div>        
+        
+    </div>
+    <div class="modal-footer">
+        <a href="" class="btn" data-dismiss="modal">Close</a>
+        <a href="" class="btn btn-primary">Send</a>
+    </div>
+</div>
+
 <br /><br /><br />
 
 <input type="submit" class="btn btn-primary" value="Join" name="Add" id="jointrip" onclick="JoinTripFunction()" />
 
-<input type="submit" class="btn btn-primary" value="Contact Trip Admin" name="ContactAdmin" id="ContactAdmin" />
+<input type="submit" class="btn btn-primary" value="Contact Trip Admin" name="ContactAdmin" id="ContactAdmin" data-toggle="modal" href="#article-editor" />
 
 <link href="~/Content/bootstrap-superhero.css" rel="stylesheet" />
 
