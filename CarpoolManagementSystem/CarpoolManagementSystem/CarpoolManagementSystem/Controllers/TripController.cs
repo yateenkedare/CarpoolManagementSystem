@@ -46,7 +46,7 @@ namespace LoginSignup.Controllers
 
             DB.Close();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("TripDetails/"+lastID, "Trip");
         }
 
         public ActionResult ShowTripData(SearchBarModel f)
