@@ -214,34 +214,53 @@ namespace LoginSignup.Controllers
         [HttpGet]
         public string sendEmail(string id)
         {
-            //try
-            //{
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    
+                    SqlDataReader i = null;
+                    if (DB.Open())
+                    {
+                        i = DB.DataRetrieve("select People from TripGroups where id='" + id+"'");
+                    }
+                    string toEmail = null;
+                    if (i.HasRows)
+                    {
+                        i.Read();
+                        toEmail = i["People"].ToString();
+                    }
+                    SmtpClient client = new SmtpClient();
+                    client.Port = 587;
+                    client.Host = "smtp.gmail.com";
+                    client.EnableSsl = true;
+                    client.Timeout = 10000;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new System.Net.NetworkCredential("carpoolmanagementsystem@gmail.com", "Passw0rd!_");
 
-                SmtpClient client = new SmtpClient();
-                client.Port = 587;
-                client.Host = "smtp.gmail.com";
-                client.EnableSsl = true;
-                client.Timeout = 10000;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential("carpoolmanagementsystem@gmail.com", "Passw0rd!_");
 
-                
-                //Setting From , To and CC
-                MailAddress From = new MailAddress("carpoolmanagementsystem@gmail.com");
-                MailAddress To = new MailAddress("yateenkedare95@gmail.com");
-
-                MailMessage mail = new MailMessage(From, To);
-                mail.Body = "Some text";
-                mail.Subject = "test message 1";
+                    //Setting From , To and CC
+                    MailAddress From = new MailAddress("carpoolmanagementsystem@gmail.com");
+                    MailAddress To = new MailAddress(toEmail);
 
 
-                client.Send(mail);
-                return "success";
-            //}
-            //catch {
-            //    return "fail";
-            //}
+
+                    MailMessage mail = new MailMessage(From, To);
+                    mail.Body = "Some text  :: ";
+                    mail.Subject = "test message 1";
+
+
+                    client.Send(mail);
+                    DB.Close();
+                    return "success";
+                }
+                else return "fail";
+            }
+            catch
+            {
+                return "fail";
+            }
         }
 
         [HttpGet]
