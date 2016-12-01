@@ -230,36 +230,54 @@ namespace LoginSignup.Controllers
                         i.Read();
                         toEmail = i["People"].ToString();
                     }
-                    SmtpClient client = new SmtpClient();
-                    client.Port = 587;
-                    client.Host = "smtp.gmail.com";
-                    client.EnableSsl = true;
-                    client.Timeout = 10000;
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new System.Net.NetworkCredential("carpoolmanagementsystem@gmail.com", "Passw0rd!_");
 
-
-                    //Setting From , To and CC
-                    MailAddress From = new MailAddress("carpoolmanagementsystem@gmail.com");
-                    MailAddress To = new MailAddress(toEmail);
-
-
-
-                    MailMessage mail = new MailMessage(From, To);
-                    mail.Body = emailText;
-                    mail.Subject = User.Identity.Name+" wants to carpool with you";
-
-
-                    client.Send(mail);
-                    DB.Close();
-                    return "success";
+                    if (SMTPSendEmail(toEmail, emailText))
+                    {
+                        DB.Close();
+                        return "success";
+                    }
+                    else
+                        return "fail";
                 }
                 else return "fail";
             }
             catch
             {
                 return "fail";
+            }
+        }
+
+        private bool SMTPSendEmail(string emailID, string emailText)
+        {
+            try
+            {
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential("carpoolmanagementsystem@gmail.com", "Passw0rd!_");
+
+
+                //Setting From , To and CC
+                MailAddress From = new MailAddress("carpoolmanagementsystem@gmail.com");
+                MailAddress To = new MailAddress(emailID);
+
+
+
+                MailMessage mail = new MailMessage(From, To);
+                mail.Body = emailText;
+                mail.Subject = User.Identity.Name + " wants to carpool with you";
+
+
+                client.Send(mail);
+
+                return true;
+            }
+            catch {
+                return false;
             }
         }
 
