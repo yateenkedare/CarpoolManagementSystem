@@ -21,7 +21,8 @@
 
     $(function() {
         $("#sendEmail").click(function(){
-            $.get('/Trip/sendEmail', {'id': @Model.id},function(response){
+            var emailText = $('#emailText').val();
+            $.get('/Trip/sendEmail', {'id': @Model.id, 'emailText' : emailText},function(response){
                 if(response == "success")
                 {
                     window.alert("success");//show success message
@@ -31,10 +32,12 @@
                     window.alert("fail");//show faliure message
                 }
                 else{
-                
+
                 }
-            })  
-        }) 
+
+                $('#closeButtonEmail').trigger('click');
+            })
+        })
     });
 
     $(function () {
@@ -77,7 +80,7 @@
         });
     });
 
-    
+
 
 </script>
 
@@ -143,10 +146,10 @@
         <h3>Contact Trip Admin</h3>
     </div>
     <div class="modal-body" style="max-width: 1000px">
-        <textarea name="emailText" cols="40" rows="5" placeholder="Enter message" style="height:160px; width:inherit;"></textarea>
+        <textarea name="emailText" id ="emailText" cols="40" rows="5" placeholder="Enter message" style="height:160px; width:inherit;"></textarea>
     </div>
     <div class="modal-footer">
-        <a href="" class="btn" data-dismiss="modal">Close</a>
+        <a href="" class="btn" id="closeButtonEmail" data-dismiss="modal">Close</a>
         <a name="sendEmail" id="sendEmail" class="btn btn-primary">Send</a>
     </div>
 </div>

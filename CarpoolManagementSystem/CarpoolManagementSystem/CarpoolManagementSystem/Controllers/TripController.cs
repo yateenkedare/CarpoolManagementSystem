@@ -212,7 +212,7 @@ namespace LoginSignup.Controllers
         }
 
         [HttpGet]
-        public string sendEmail(string id)
+        public string sendEmail(string id, string emailText)
         {
             try
             {
@@ -247,8 +247,8 @@ namespace LoginSignup.Controllers
 
 
                     MailMessage mail = new MailMessage(From, To);
-                    mail.Body = "Some text  :: ";
-                    mail.Subject = "test message 1";
+                    mail.Body = emailText;
+                    mail.Subject = User.Identity.Name+" wants to carpool with you";
 
 
                     client.Send(mail);
