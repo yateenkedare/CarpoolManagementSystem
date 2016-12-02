@@ -37,34 +37,25 @@ namespace LoginSignup.Controllers
 
         public ActionResult AddTrip()
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
                 return View();
             else
                 return RedirectToAction("Login", "Account");
         }
-       [HttpPost]
+        [HttpPost]
         public ActionResult AddTrip(Trip t)
         {
-            
-                TripSam ts = new TripSam();
-            //Trip td = new Trip();
-            //td.source = "Boston";
-            //td.destination = "New york";
-            //td.date = Convert.ToDateTime("12/12/2016");
-            //td.created_by = "23f74dc3-9a56-4507-a79b-27e05e6190ca";
-            if(t.carAvailable==false)
+
+            TripSam ts = new TripSam();
+            if (t.carAvailable == false)
             {
                 t.vacant_seats = -1;
             }
-            //if(t.carAvailable==true && t.vacant_seats==null)
-            //{
-            //    t.vacant_seats = 0;
-            //}
             users us = new users();
             AspNetUser asp = us.AspNetUsers.Single(a => a.UserName == User.Identity.Name);
             t.created_by = asp.Id;
-                ts.Trips.Add(t);
-                ts.SaveChanges();
+            ts.Trips.Add(t);
+            ts.SaveChanges();
             TripGContext t_gc = new TripGContext();
             TripGroup tg = new TripGroup();
             tg.Id = t.id;
@@ -72,41 +63,23 @@ namespace LoginSignup.Controllers
             tg.TripAdmin = t.carAvailable;
             t_gc.x.Add(tg);
             t_gc.SaveChanges();
-            //return t_gc.x.Contains(tg);
-            //td.carAvailable = false;
-            //td.description = null;
-            //td.vacant_seats = null;
-            //try
-            //{
-            //    ts.SaveChanges();
-            //}
-            //catch (DbEntityValidationException ex)
-            //{
-            //    foreach (var entityValidationErrors in ex.EntityValidationErrors)
-            //    {
-            //        foreach (var validationError in entityValidationErrors.ValidationErrors)
-            //        {
-            //            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-            //        }
-            //    }
-            //}
-            //catch (DbUpdateException ex)
-            //{
 
+            //if similar trip exists send mail to those people
+            List<Trip> similarTrips = new List<Trip>();
+            similarTrips = ts.Trips.Where(s => s.source == t.source && s.destination == t.destination).ToList();
+            foreach (var s in similarTrips)
+            {
+                AspNetUser aspnetusers = us.AspNetUsers.Single(u => u.Id == s.created_by);
+                if (aspnetusers.Email != User.Identity.Name)
+                {
+                    TripController tp = new TripController();
+                    tp.SMTPSendEmail(aspnetusers.Email,
+                    aspnetusers.Email + " has created a new trip similar to yours",
+                    "A trip similar to yours has been created on CarpoolManagementSystem");
+                }
+            }
 
-            //    Response.Write(ex.InnerException.Message);
-
-
-            //}
-
-            //catch(Exception ex)
-            //{
-            //    Response.Write(ex.Message);
-            //}
-
-
-            //return RedirectToAction("Index", "Home");
-            return RedirectToAction("TripDetails/"+t.id, "Trip");
+            return RedirectToAction("TripDetails/" + t.id, "Trip");
 
 
         }

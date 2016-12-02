@@ -24,29 +24,29 @@ namespace LoginSignup.Controllers
             {
                 l_t = sam.Trips.Where(u => u.date == f.date).ToList();
             }
-            else if (f.source == null && f.date== null)    //only destination is provided
+            else if (f.source == null && f.date == null)    //only destination is provided
             {
                 l_t = sam.Trips.Where(u => u.destination == f.destination).ToList();
             }
-            else if (f.destination == null && f.date== null)   //only source is provided
+            else if (f.destination == null && f.date == null)   //only source is provided
             {
                 l_t = sam.Trips.Where(u => u.source == f.source).ToList();
             }
-            else if (f.date== null)         //Source and destination are provided
+            else if (f.date == null)         //Source and destination are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.destination==f.destination).ToList();
+                l_t = sam.Trips.Where(u => u.source == f.source && u.destination == f.destination).ToList();
             }
             else if (f.destination == null)      //Source and date are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.date== f.date).ToList();
+                l_t = sam.Trips.Where(u => u.source == f.source && u.date == f.date).ToList();
             }
             else if (f.source == null)           // destination and date are provided
             {
-                l_t = sam.Trips.Where(u => u.destination == f.destination && u.date== f.date).ToList();
+                l_t = sam.Trips.Where(u => u.destination == f.destination && u.date == f.date).ToList();
             }
             else               //all fields are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.date== f.date && u.destination==f.destination).ToList();
+                l_t = sam.Trips.Where(u => u.source == f.source && u.date == f.date && u.destination == f.destination).ToList();
             }
             return View("ShowTripData", l_t);
         }
@@ -65,14 +65,14 @@ namespace LoginSignup.Controllers
             {
                 TripGContext g = new TripGContext();
                 var tg = g.x.Where(b => b.Id.ToString() == id).ToArray();
-                foreach(var d in tg)
+                foreach (var d in tg)
                 {
-                    if(d.People==User.Identity.Name)
+                    if (d.People == User.Identity.Name)
                     {
                         return "2";
                     }
                 }
-                
+
                 TripGroup t_g = new TripGroup();
                 t_g.Id = Int32.Parse(id);
                 t_g.People = User.Identity.Name;
@@ -85,12 +85,12 @@ namespace LoginSignup.Controllers
                 t_s.SaveChanges();
                 return "3";
             }
-            
+
             else
                 return "1";
-            
+
         }
-        
+
         public ActionResult deleteTrip(int id)
         {
             TripSam s = new TripSam();
@@ -135,7 +135,7 @@ namespace LoginSignup.Controllers
                     users us = new users();
                     AspNetUser au = us.AspNetUsers.Single(z => z.Id == b.created_by);
                     toEmail = au.Email;
-                    if (SMTPSendEmail(toEmail, emailText))
+                    if (SMTPSendEmail(toEmail, User.Identity.Name + " wants to carpool with you", emailText))
                     {
                         return "success";
                     }
@@ -151,7 +151,7 @@ namespace LoginSignup.Controllers
                 return "fail";
             }
         }
-        private bool SMTPSendEmail(string emailID, string emailText)
+        public bool SMTPSendEmail(string emailID, string subject, string emailText)
         {
             try
             {
@@ -173,7 +173,7 @@ namespace LoginSignup.Controllers
 
                 MailMessage mail = new MailMessage(From, To);
                 mail.Body = emailText;
-                mail.Subject = User.Identity.Name + " wants to carpool with you";
+                mail.Subject = subject;
 
 
                 client.Send(mail);
