@@ -1,22 +1,37 @@
-@model LoginSignup.Models.TripModel
+﻿@model LoginSignup.Models.Trip
+
 @{
     ViewBag.Title = "TripDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <script>
     $( document ).ready(function() {
+
         $.get('/Trip/ShowJoinButton', {'id': @Model.id},function(response){
             //window.alert(response);
-            if(response == "False")
+            $.get()
+            if(response == "1")
             {
                 //TODO - DONE
                 //if response == false Hide button
                 //else show button
 
-                $("input[type=submit]").attr('disabled','disabled');
+                $("#jointrip").attr('disabled','disabled');
+                $("#ContactAdmin").attr('disabled','disabled');
+
+            }
+            else if(response=="2")
+            {
+                //$("input[type=submit]").attr('disabled','disabled');
+                $("#jointrip").attr('disabled','disabled');
+                $("#deletetrip").attr('disabled','disabled');
+            }
+            else
+            {
+                $("#deletetrip").attr('disabled','disabled');
             }
         })
+
     });
 
     $(function() {
@@ -80,62 +95,75 @@
         });
     });
 
-
-
+    $(function(){
+        $("#deletetrip").click(function(){
+            window.location.href='@Url.Action("deleteTrip", "Trip", new { id=Model.id})';
+        })
+    })
 </script>
+<h2>TripDetails</h2>
 
-<h2>Trip Details</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
 
-@Html.ValidationSummary()
-@Html.AntiForgeryToken()
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Source</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.source)
-    </div>
+        <div class="form-group">
+            <label for="exampleInputName2" class="col-sm-2 control-label">Source</label>
+            <div class="col-sm-10">
+                @Html.DisplayTextFor(model => model.source)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br /><br /><br />
+            <label for="exampleInputName2" class="col-sm-2 control-label">Destination</label>
+            <div class="col-sm-10">
+                @Html.DisplayTextFor(model => model.destination)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <br /><br /><br />
+            <label for="exampleInputName2" class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+                @Html.DisplayTextFor(model => model.date.ToString().Split(' ')[0])
+            </div>
+        </div>
+
+        @if ((Model.description != null) || (!Model.description.IsEmpty()))
+        {
+            <div class="form-group">
+                <br /><br /><br />
+                <label for="exampleInputName2" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    @Html.DisplayTextFor(model => model.description)
+                </div>
+            </div>
+        }
+
+        @if (Model.vacant_seats >= 0)
+        {
+            <div class="form-group">
+                <br /><br /><br />
+                <label for="exampleInputName2" class="col-sm-2 control-label">Vacant Seats</label>
+                <div class="col-sm-10">
+                    @Html.DisplayTextFor(model => model.vacant_seats)
+                </div>
+            </div>
+        }
+
+        @if (Model.estimated_cost != null)
+        {
+            <div class="form-group">
+                <br /><br /><br />
+                <label for="exampleInputName2" class="col-sm-2 control-label">Estimated Cost ($)</label>
+                <div class="col-sm-10">
+                    @Html.DisplayTextFor(model => model.estimated_cost)
+                </div>
+            </div>
+        }
+    </dl>
 </div>
-
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Destination</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.destination)
-    </div>
-</div>
-
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Date</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.date)
-    </div>
-</div>
-
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.description)
-    </div>
-</div>
-
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Vacant Seats</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.vacant_seats)
-    </div>
-</div>
-
-<div class="form-group">
-    <br /><br /><br />
-    <label for="exampleInputName2" class="col-sm-2 control-label">Estimated Cost ($)</label>
-    <div class="col-sm-10">
-        @Html.DisplayTextFor(m => m.estimated_cost)
-    </div>
-</div>
-
 <div class="modal fade" id="article-editor" style="left: 39%;right:40%;
           -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
              -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
@@ -146,7 +174,7 @@
         <h3>Contact Trip Admin</h3>
     </div>
     <div class="modal-body" style="max-width: 1000px">
-        <textarea name="emailText" id ="emailText" cols="40" rows="5" placeholder="Enter message" style="height:160px; width:inherit;"></textarea>
+        <textarea name="emailText" id="emailText" cols="40" rows="5" placeholder="Enter message" style="height:160px; width:inherit;"></textarea>
     </div>
     <div class="modal-footer">
         <a href="" class="btn" id="closeButtonEmail" data-dismiss="modal">Close</a>
@@ -154,11 +182,10 @@
     </div>
 </div>
 
-<br /><br /><br />
-
-<input type="submit" class="btn btn-primary" value="Join" name="Add" id="jointrip"/>
-
-<input type="submit" class="btn btn-primary" value="Contact Trip Admin" name="ContactAdmin" id="ContactAdmin" data-toggle="modal" href="#article-editor" />
+<br />
+<input type="submit" class="btn btn-primary" value="Join" name="Add" id="jointrip" onclick="JoinTripFunction()" /> |
+<input type="submit" class="btn btn-primary" value="Contact Trip Admin" name="ContactAdmin" id="ContactAdmin" data-toggle="modal" href="#article-editor" />   
+<input type="submit" class="btn btn-primary" value="Delete" id="deletetrip" />
 
 <link href="~/Content/bootstrap-superhero.css" rel="stylesheet" />
 
