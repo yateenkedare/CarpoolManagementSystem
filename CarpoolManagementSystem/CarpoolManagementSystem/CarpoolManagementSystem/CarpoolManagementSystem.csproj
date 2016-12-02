@@ -284,7 +284,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_SearchBar.cshtml" />
     <Content Include="Views\Home\AddTrip.cshtml" />
-    <Content Include="Views\Shared\_AddTripDetails.cshtml" />
     <Content Include="Views\Shared\_TableData.cshtml" />
     <Content Include="Views\Trip\ShowTripData.cshtml" />
     <Content Include="Views\Trip\TripDetails.cshtml" />
