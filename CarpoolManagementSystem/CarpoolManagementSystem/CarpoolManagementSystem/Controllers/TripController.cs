@@ -14,7 +14,7 @@ namespace LoginSignup.Controllers
     {
         public ActionResult ShowTripData(SearchBarModel f)
         {
-            TripSam sam = new TripSam();
+            TripContext sam = new TripContext();
             List<Trip> l_t = new List<Trip>();
             if (f.source == null && f.destination == null && f.date == null)   //all fields null
             {
@@ -53,7 +53,7 @@ namespace LoginSignup.Controllers
 
         public ActionResult TripDetails(int id)
         {
-            TripSam tp = new TripSam();
+            TripContext tp = new TripContext();
             Trip x = tp.Trips.Find(id);
             return View("TripDetails", x);
         }
@@ -63,7 +63,7 @@ namespace LoginSignup.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                TripGContext g = new TripGContext();
+                TripGroupContext g = new TripGroupContext();
                 var tg = g.x.Where(b => b.Id.ToString() == id).ToArray();
                 foreach (var d in tg)
                 {
@@ -79,7 +79,7 @@ namespace LoginSignup.Controllers
                 t_g.TripAdmin = false;
                 g.x.Add(t_g);
                 g.SaveChanges();
-                TripSam t_s = new TripSam();
+                TripContext t_s = new TripContext();
                 Trip t = t_s.Trips.Single(d => d.id.ToString() == id);
                 t.vacant_seats = t.vacant_seats - 1;
                 t_s.SaveChanges();
@@ -93,7 +93,7 @@ namespace LoginSignup.Controllers
 
         public ActionResult deleteTrip(int id)
         {
-            TripSam s = new TripSam();
+            TripContext s = new TripContext();
             Trip t = s.Trips.Single(u => u.id == id);
             s.Trips.Remove(t);
             s.SaveChanges();
@@ -102,12 +102,12 @@ namespace LoginSignup.Controllers
         [HttpGet]
         public string ShowJoinButton(string id)
         {
-            TripSam s = new TripSam();
-            TripGContext g = new TripGContext();
-            users u = new users();
+            TripContext s = new TripContext();
+            TripGroupContext g = new TripGroupContext();
+            AspNetUsersContext u = new AspNetUsersContext();
             Trip te = s.Trips.Single(a1 => a1.id.ToString() == id);
 
-            AspNetUser a = u.AspNetUsers.Single(c1 => c1.Id == te.created_by);
+            AspNetUsers a = u.AspNetUsers.Single(c1 => c1.Id == te.created_by);
             if (a.UserName == User.Identity.Name)
             {
                 return "1";
@@ -129,11 +129,11 @@ namespace LoginSignup.Controllers
                 if (User.Identity.IsAuthenticated)
                 {
                     string toEmail = null;
-                    TripSam a = new TripSam();
+                    TripContext a = new TripContext();
 
                     Trip b = a.Trips.Single(u => u.id.ToString() == id);
-                    users us = new users();
-                    AspNetUser au = us.AspNetUsers.Single(z => z.Id == b.created_by);
+                    AspNetUsersContext us = new AspNetUsersContext();
+                    AspNetUsers au = us.AspNetUsers.Single(z => z.Id == b.created_by);
                     toEmail = au.Email;
                     if (SMTPSendEmail(toEmail, User.Identity.Name + " wants to carpool with you", emailText))
                     {

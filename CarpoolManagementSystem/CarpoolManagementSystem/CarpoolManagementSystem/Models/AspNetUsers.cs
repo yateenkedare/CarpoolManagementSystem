@@ -6,7 +6,7 @@ namespace LoginSignup.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class AspNetUser
+    public partial class AspNetUsers
     {
         public string Id { get; set; }
 

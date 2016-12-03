@@ -46,17 +46,17 @@ namespace LoginSignup.Controllers
         public ActionResult AddTrip(Trip t)
         {
 
-            TripSam ts = new TripSam();
+            TripContext ts = new TripContext();
             if (t.carAvailable == false)
             {
                 t.vacant_seats = -1;
             }
-            users us = new users();
-            AspNetUser asp = us.AspNetUsers.Single(a => a.UserName == User.Identity.Name);
+            AspNetUsersContext us = new AspNetUsersContext();
+            AspNetUsers asp = us.AspNetUsers.Single(a => a.Email == User.Identity.Name);
             t.created_by = asp.Id;
             ts.Trips.Add(t);
             ts.SaveChanges();
-            TripGContext t_gc = new TripGContext();
+            TripGroupContext t_gc = new TripGroupContext();
             TripGroup tg = new TripGroup();
             tg.Id = t.id;
             tg.People = User.Identity.Name;
@@ -69,12 +69,12 @@ namespace LoginSignup.Controllers
             similarTrips = ts.Trips.Where(s => s.source == t.source && s.destination == t.destination).ToList();
             foreach (var s in similarTrips)
             {
-                AspNetUser aspnetusers = us.AspNetUsers.Single(u => u.Id == s.created_by);
+                AspNetUsers aspnetusers = us.AspNetUsers.Single(u => u.Id == s.created_by);
                 if (aspnetusers.Email != User.Identity.Name)
                 {
                     TripController tp = new TripController();
                     tp.SMTPSendEmail(aspnetusers.Email,
-                    aspnetusers.Email + " has created a new trip similar to yours",
+                    User.Identity.Name + " has created a new trip similar to yours",
                     "A trip similar to yours has been created on CarpoolManagementSystem");
                 }
             }

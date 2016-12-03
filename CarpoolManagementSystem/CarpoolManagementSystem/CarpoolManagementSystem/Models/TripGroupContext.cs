@@ -6,10 +6,10 @@ using System.Data.Entity;
 
 namespace LoginSignup.Models
 {
-    public class TripGContext:DbContext
+    public class TripGroupContext:DbContext
     {
-        public TripGContext()
-            : base("name=TripGContext")
+        public TripGroupContext()
+            : base("name=TripGroupContext")
         {
         }
         public DbSet<TripGroup> x { get; set; }

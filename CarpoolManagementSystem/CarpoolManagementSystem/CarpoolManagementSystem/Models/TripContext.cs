@@ -5,10 +5,10 @@ namespace LoginSignup.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class TripSam : DbContext
+    public partial class TripContext : DbContext
     {
-        public TripSam()
-            : base("name=TripSam")
+        public TripContext()
+            : base("name=TripContext")
         {
         }
 

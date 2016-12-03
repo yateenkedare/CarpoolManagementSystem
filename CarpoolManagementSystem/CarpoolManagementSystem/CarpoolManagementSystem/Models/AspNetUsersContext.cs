@@ -5,14 +5,14 @@ namespace LoginSignup.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class users : DbContext
+    public partial class AspNetUsersContext : DbContext
     {
-        public users()
-            : base("name=users")
+        public AspNetUsersContext()
+            : base("name=UserContext")
         {
         }
 
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
