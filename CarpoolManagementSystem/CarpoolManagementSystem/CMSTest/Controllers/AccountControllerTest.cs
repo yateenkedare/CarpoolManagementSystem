@@ -18,11 +18,8 @@ namespace CMSTest
         public void LoginReturnTest()
         {
             var controller = new AccountController();
-            try { var result = controller.Login("") as ActionResult; }
-            catch
-            {
-                Assert.IsTrue(true);
-            }
+            var result = controller.Login(null) as ViewResult;
+            Assert.AreEqual("Login", result.ViewName);
         }
 
         [TestMethod]

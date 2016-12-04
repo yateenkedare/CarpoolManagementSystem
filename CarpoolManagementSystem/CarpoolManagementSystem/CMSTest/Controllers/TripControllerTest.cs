@@ -45,7 +45,7 @@ namespace CMSTest
         public void ShowJoinButtonTest()
         {
             var controller = new TripController();
-            var result =controller.ShowJoinButton("1");
+            var result =controller.ShowJoinButton("89");
             Assert.AreEqual(true, result);
         }
     }
