@@ -214,3 +214,7 @@ C:\Users\bhanu\Downloads\CMS\CarpoolManagementSystem-master\CarpoolManagementSys
 C:\Users\bhanu\Downloads\CMS\CarpoolManagementSystem-master\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\obj\Debug\CarpoolManagementSystemTest.csprojResolveAssemblyReference.cache
 C:\Users\bhanu\Downloads\CMS\CarpoolManagementSystem-master\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\obj\Debug\CMSTest.dll
 C:\Users\bhanu\Downloads\CMS\CarpoolManagementSystem-master\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\obj\Debug\CMSTest.pdb
+D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\bin\Debug\EntityFramework.SqlServer.dll
+D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\bin\Debug\MySql.Data.dll
+D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\bin\Debug\MySql.Data.Entity.EF6.dll
+D:\College Stuff\SSDI\Project\CarpoolManagementSystem\CarpoolManagementSystem\CMSTest\bin\Debug\EntityFramework.SqlServer.xml

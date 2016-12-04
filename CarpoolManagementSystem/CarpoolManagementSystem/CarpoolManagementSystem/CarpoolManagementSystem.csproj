@@ -207,6 +207,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ITripContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SearchBarModel.cs" />
     <Compile Include="Models\Trip.cs" />

@@ -57,8 +57,8 @@ namespace LoginSignup.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-
-            try {
+            try
+            {
                 if (User.Identity.IsAuthenticated)
                     return RedirectToAction("Index", "Manage");
                 else

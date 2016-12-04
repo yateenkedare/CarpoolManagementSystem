@@ -12,6 +12,12 @@ namespace LoginSignup.Controllers
 {
     public class TripController : Controller
     {
+        public ITripContext tp = new TripContext();
+        public TripController() { }
+        public TripController(ITripContext I_t)
+        {
+            tp = I_t;
+        }
         public ActionResult ShowTripData(SearchBarModel f)
         {
             TripContext sam = new TripContext();
@@ -53,7 +59,7 @@ namespace LoginSignup.Controllers
 
         public ActionResult TripDetails(int id)
         {
-            TripContext tp = new TripContext();
+            //TripContext tp = new TripContext();
             Trip x = tp.Trips.Find(id);
             return View("TripDetails", x);
         }
