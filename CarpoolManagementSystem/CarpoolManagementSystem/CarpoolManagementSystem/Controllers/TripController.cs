@@ -20,39 +20,39 @@ namespace LoginSignup.Controllers
         }
         public ActionResult ShowTripData(SearchBarModel f)
         {
-            TripContext sam = new TripContext();
+            if(tp == null) tp = new TripContext();
             List<Trip> l_t = new List<Trip>();
             if (f.source == null && f.destination == null && f.date == null)   //all fields null
             {
-                l_t = sam.Trips.ToList();
+                l_t = tp.Trips.ToList();
             }
             else if (f.source == null && f.destination == null)      //only date is provided
             {
-                l_t = sam.Trips.Where(u => u.date == f.date).ToList();
+                l_t = tp.Trips.Where(u => u.date == f.date).ToList();
             }
             else if (f.source == null && f.date == null)    //only destination is provided
             {
-                l_t = sam.Trips.Where(u => u.destination == f.destination).ToList();
+                l_t = tp.Trips.Where(u => u.destination == f.destination).ToList();
             }
             else if (f.destination == null && f.date == null)   //only source is provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source).ToList();
+                l_t = tp.Trips.Where(u => u.source == f.source).ToList();
             }
             else if (f.date == null)         //Source and destination are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.destination == f.destination).ToList();
+                l_t = tp.Trips.Where(u => u.source == f.source && u.destination == f.destination).ToList();
             }
             else if (f.destination == null)      //Source and date are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.date == f.date).ToList();
+                l_t = tp.Trips.Where(u => u.source == f.source && u.date == f.date).ToList();
             }
             else if (f.source == null)           // destination and date are provided
             {
-                l_t = sam.Trips.Where(u => u.destination == f.destination && u.date == f.date).ToList();
+                l_t = tp.Trips.Where(u => u.destination == f.destination && u.date == f.date).ToList();
             }
             else               //all fields are provided
             {
-                l_t = sam.Trips.Where(u => u.source == f.source && u.date == f.date && u.destination == f.destination).ToList();
+                l_t = tp.Trips.Where(u => u.source == f.source && u.date == f.date && u.destination == f.destination).ToList();
             }
             return View("ShowTripData", l_t);
         }
@@ -108,10 +108,10 @@ namespace LoginSignup.Controllers
         [HttpGet]
         public string ShowJoinButton(string id)
         {
-            TripContext s = new TripContext();
+            if(tp == null)  tp = new TripContext();
             TripGroupContext g = new TripGroupContext();
             AspNetUsersContext u = new AspNetUsersContext();
-            Trip te = s.Trips.Single(a1 => a1.id.ToString() == id);
+            Trip te = tp.Trips.Single(a1 => a1.id.ToString() == id);
 
             AspNetUsers a = u.AspNetUsers.Single(c1 => c1.Id == te.created_by);
             if (a.UserName == User.Identity.Name)
