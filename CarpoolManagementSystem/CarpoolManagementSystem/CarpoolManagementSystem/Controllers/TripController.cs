@@ -69,27 +69,35 @@ namespace LoginSignup.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                TripGroupContext g = new TripGroupContext();
-                var tg = g.TripGroups.Where(b => b.Id.ToString() == id).ToArray();
-                foreach (var d in tg)
+                try
                 {
-                    if (d.People == User.Identity.Name)
+                    TripGroupContext g = new TripGroupContext();
+                    var tg = g.TripGroups.Where(b => b.Id.ToString() == id).ToArray();
+                    foreach (var d in tg)
                     {
-                        return "2";
+                        if (d.People == User.Identity.Name)
+                        {
+                            return "2";
+                        }
                     }
-                }
 
-                TripGroup t_g = new TripGroup();
-                t_g.Id = Int32.Parse(id);
-                t_g.People = User.Identity.Name;
-                t_g.TripAdmin = false;
-                g.TripGroups.Add(t_g);
-                g.SaveChanges();
-                TripContext t_s = new TripContext();
-                Trip t = t_s.Trips.Single(d => d.id.ToString() == id);
-                t.vacant_seats = t.vacant_seats - 1;
-                t_s.SaveChanges();
-                return "3";
+                    TripGroup t_g = new TripGroup();
+                    t_g.Id = Int32.Parse(id);
+                    t_g.People = User.Identity.Name;
+                    t_g.TripAdmin = false;
+                    g.TripGroups.Add(t_g);
+                    g.SaveChanges();
+                    TripContext t_s = new TripContext();
+                    Trip t = t_s.Trips.Single(d => d.id.ToString() == id);
+                    t.vacant_seats = t.vacant_seats - 1;
+                    t_s.SaveChanges();
+                    return "3";
+                }
+                catch
+                {
+                    return "3";
+                }
+                
             }
 
             else

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Security.Principal;
 using System.Threading;
 using Moq;
+using System.Diagnostics;
 
 namespace CMSTest
 {
@@ -162,7 +163,7 @@ namespace CMSTest
         public void SMTPEmailTest()
         {
             TripController tripController = new TripController();
-            Boolean x = tripController.SMTPSendEmail("carpoolmanagementsystem@gmail.com", 
+            bool x = tripController.SMTPSendEmail("carpoolmanagementsystem@gmail.com", 
                 "Testing Email", 
                 "This email has been sent by automated unit test");
             Assert.IsTrue(x);
@@ -171,7 +172,23 @@ namespace CMSTest
         [TestMethod]
         public void JoinTripTest()
         {
-            //NotImplemented
+            var fakeHttpContext = new Mock<System.Web.HttpContextBase>();
+            var fakeIdentity = new GenericIdentity("carpoolmanagementsystem@gmail.com");
+            var principal = new GenericPrincipal(fakeIdentity, null);
+
+            fakeHttpContext.Setup(t => t.User).Returns(principal);
+            var controllerContext = new Mock<ControllerContext>();
+            controllerContext.Setup(t => t.HttpContext).Returns(fakeHttpContext.Object);
+            var tripcontroller = new TripController();
+            tripcontroller.ControllerContext = controllerContext.Object;
+
+            var result=tripcontroller.JoinTrip("89");
+            bool x=false;
+            if (result == "2" || result == "3")
+            {
+                x = true;
+            }
+            Assert.AreEqual(true,x);
         }
     }
 }
