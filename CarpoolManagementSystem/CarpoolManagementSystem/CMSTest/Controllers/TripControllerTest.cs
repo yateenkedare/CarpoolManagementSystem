@@ -144,7 +144,7 @@ namespace CMSTest
             t_c_t.Trips.Add(a1);
             var controller = new TripController(t_c_t);
             var result =controller.ShowJoinButton("1");
-            Assert.AreEqual(true, result);
+            Assert.AreEqual("3", result);
         }
     }
 }

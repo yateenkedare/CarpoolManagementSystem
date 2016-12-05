@@ -111,18 +111,25 @@ namespace LoginSignup.Controllers
             if(tp == null)  tp = new TripContext();
             TripGroupContext g = new TripGroupContext();
             AspNetUsersContext u = new AspNetUsersContext();
-            Trip te = tp.Trips.Single(a1 => a1.id.ToString() == id);
+            List<Trip> te = tp.Trips.Where(a1 => a1.id.ToString() == id).ToList();
+            try
+            {
+                AspNetUsers a = u.AspNetUsers.Single(c1 => c1.Id == te[0].created_by);
 
-            AspNetUsers a = u.AspNetUsers.Single(c1 => c1.Id == te.created_by);
-            if (a.UserName == User.Identity.Name)
-            {
-                return "1";
+                if (a.UserName == User.Identity.Name)
+                {
+                    return "1";
+                }
+                else if (te[0].vacant_seats == 0)
+                {
+                    return "2";
+                }
+                else
+                {
+                    return "3";
+                }
             }
-            else if (te.vacant_seats == 0)
-            {
-                return "2";
-            }
-            else
+            catch
             {
                 return "3";
             }
