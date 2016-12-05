@@ -152,5 +152,15 @@ namespace CMSTest
             var result =controller.ShowJoinButton("1");
             Assert.AreEqual("3", result);
         }
+
+        [TestMethod]
+        public void SMTPEmailTest()
+        {
+            TripController tripController = new TripController();
+            Boolean x = tripController.SMTPSendEmail("carpoolmanagementsystem@gmail.com", 
+                "Testing Email", 
+                "This email has been sent by automated unit test");
+            Assert.IsTrue(x);
+        }
     }
 }
