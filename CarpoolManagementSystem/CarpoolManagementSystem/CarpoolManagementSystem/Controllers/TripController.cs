@@ -70,7 +70,7 @@ namespace LoginSignup.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 TripGroupContext g = new TripGroupContext();
-                var tg = g.x.Where(b => b.Id.ToString() == id).ToArray();
+                var tg = g.TripGroups.Where(b => b.Id.ToString() == id).ToArray();
                 foreach (var d in tg)
                 {
                     if (d.People == User.Identity.Name)
@@ -83,7 +83,7 @@ namespace LoginSignup.Controllers
                 t_g.Id = Int32.Parse(id);
                 t_g.People = User.Identity.Name;
                 t_g.TripAdmin = false;
-                g.x.Add(t_g);
+                g.TripGroups.Add(t_g);
                 g.SaveChanges();
                 TripContext t_s = new TripContext();
                 Trip t = t_s.Trips.Single(d => d.id.ToString() == id);

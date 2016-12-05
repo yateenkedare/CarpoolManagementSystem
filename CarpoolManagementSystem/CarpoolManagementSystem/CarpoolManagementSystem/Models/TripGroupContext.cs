@@ -12,6 +12,6 @@ namespace LoginSignup.Models
             : base("name=TripGroupContext")
         {
         }
-        public DbSet<TripGroup> x { get; set; }
+        public DbSet<TripGroup> TripGroups { get; set; }
     }
 }

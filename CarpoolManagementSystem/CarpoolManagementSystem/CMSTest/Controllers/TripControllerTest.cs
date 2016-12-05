@@ -5,12 +5,17 @@ using LoginSignup.Models;
 using System.Web.Mvc;
 using CMSTest.TripClasses;
 using System.Collections.Generic;
+using System.Security.Principal;
+using System.Threading;
+using Moq;
 
 namespace CMSTest
 {
     [TestClass]
     public class TripControllerTest
     {
+        public object HttpContext { get; private set; }
+
         [TestMethod]
         public void TripDetailsTest()
         {
@@ -161,6 +166,12 @@ namespace CMSTest
                 "Testing Email", 
                 "This email has been sent by automated unit test");
             Assert.IsTrue(x);
+        }
+
+        [TestMethod]
+        public void JoinTripTest()
+        {
+            //NotImplemented
         }
     }
 }

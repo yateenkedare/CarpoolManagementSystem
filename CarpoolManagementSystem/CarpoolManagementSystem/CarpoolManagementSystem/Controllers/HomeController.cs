@@ -37,10 +37,17 @@ namespace LoginSignup.Controllers
 
         public ActionResult AddTrip()
         {
-            if (User.Identity.IsAuthenticated)
-                return View();
-            else
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                    return View("AddTrip");
+                else
+                    return RedirectToAction("Login", "Account");
+            }
+            catch
+            {
                 return RedirectToAction("Login", "Account");
+            }
         }
         [HttpPost]
         public ActionResult AddTrip(Trip t)
@@ -61,7 +68,7 @@ namespace LoginSignup.Controllers
             tg.Id = t.id;
             tg.People = User.Identity.Name;
             tg.TripAdmin = t.carAvailable;
-            t_gc.x.Add(tg);
+            t_gc.TripGroups.Add(tg);
             t_gc.SaveChanges();
 
             //if similar trip exists send mail to those people
