@@ -67,6 +67,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -96,6 +98,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -113,9 +116,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\AccountControllerTest.cs" />
+    <Compile Include="DataDependencyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\TripControllerTest.cs" />
+    <Compile Include="TripClasses\DBTest.cs" />
+    <Compile Include="TripClasses\DBTestContext.cs" />
     <Compile Include="TripClasses\TestDbContextTrip.cs" />
     <Compile Include="TripClasses\TestDbsetTrip.cs" />
     <Compile Include="TripClasses\TestTripDbset.cs" />
@@ -129,6 +135,15 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="aspnet-LoginSignup-20161023102059.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="aspnet-LoginSignup-20161023102059_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>aspnet-LoginSignup-20161023102059.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
