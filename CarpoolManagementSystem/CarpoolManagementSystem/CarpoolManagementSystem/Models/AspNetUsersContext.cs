@@ -8,7 +8,7 @@ namespace LoginSignup.Models
     public partial class AspNetUsersContext : DbContext
     {
         public AspNetUsersContext()
-            : base("name=UserContext")
+            : base("name=AspNetUsersContext")
         {
         }
 

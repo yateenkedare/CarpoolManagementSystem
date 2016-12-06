@@ -117,11 +117,11 @@ namespace LoginSignup.Controllers
         public string ShowJoinButton(string id)
         {
             if(tp == null)  tp = new TripContext();
-            TripGroupContext g = new TripGroupContext();
-            AspNetUsersContext u = new AspNetUsersContext();
-            Trip te = tp.Trips.Single(a1 => a1.id.ToString() == id);
             try
             {
+                TripGroupContext g = new TripGroupContext();
+                AspNetUsersContext u = new AspNetUsersContext();
+                Trip te = tp.Trips.Single(a1 => a1.id.ToString() == id);
                 AspNetUsers a = u.AspNetUsers.Single(c1 => c1.Id == te.created_by);
 
                 if (a.UserName == User.Identity.Name)

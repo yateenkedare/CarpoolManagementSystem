@@ -17,70 +17,50 @@ namespace CMSTest
     {
         public object HttpContext { get; private set; }
 
+
+        TestTripDbset trips = new TestTripDbset();
+        Trip trip1 = new Trip
+        {
+            id = 1,
+            source = "durham",
+            destination = "hyderabad",
+            created_by = "bhanu",
+            carAvailable = true,
+            vacant_seats = 4,
+            estimated_cost = 25,
+            description = null
+        };
+        Trip trip2 = new Trip
+        {
+            id = 2,
+            source = "charlotte",
+            destination = "chapel hill",
+            created_by = "koushik",
+            carAvailable = true,
+            vacant_seats = 3,
+            estimated_cost = 30,
+            description = "xyz"
+        };
+
         [TestMethod]
         public void TripDetailsTest()
         {
-            TestTripDbset a = new TestTripDbset();
-            Trip a1 = new Trip
-            {
-                id = 1,
-                source = "durham",
-                destination = "hyderabad",
-                created_by = "bhanu",
-                carAvailable = true,
-                vacant_seats = 4,
-                estimated_cost = 25,
-                description = null
-            };
-            Trip a2 = new Trip
-            {
-                id = 2,
-                source = "charlotte",
-                destination = "chapel hill",
-                created_by = "koushik",
-                carAvailable = true,
-                vacant_seats = 3,
-                estimated_cost = 30,
-                description = "xyz"
-            };
-            a.Add(a1);
-            a.Add(a2);
+            
+            trips.Add(trip1);
+            trips.Add(trip2);
 
-            TestDbContextTrip t_c_t = new TestDbContextTrip(a);
-            t_c_t.Trips.Add(a1);
-            t_c_t.Trips.Add(a2);
+            TestDbContextTrip t_c_t = new TestDbContextTrip(trips);
+            t_c_t.Trips.Add(trip1);
+            t_c_t.Trips.Add(trip2);
             var controller = new TripController(t_c_t);
             var result = controller.TripDetails(1) as ViewResult;
             var model = controller.ViewData.Model;
-            Assert.AreEqual(a1, model);
+            Assert.AreEqual(trip1, model);
         }
 
         [TestMethod]
         public void ShowTripDataTest()
         {
-            TestTripDbset trips = new TestTripDbset();
-            Trip trip1 = new Trip
-            {
-                id = 1,
-                source = "durham",
-                destination = "hyderabad",
-                created_by = "bhanu",
-                carAvailable = true,
-                vacant_seats = 4,
-                estimated_cost = 25,
-                description = null
-            };
-            Trip trip2 = new Trip
-            {
-                id = 2,
-                source = "charlotte",
-                destination = "chapel hill",
-                created_by = "koushik",
-                carAvailable = true,
-                vacant_seats = 3,
-                estimated_cost = 30,
-                description = "xyz"
-            };
             trips.Add(trip1);
             trips.Add(trip2);
 
@@ -189,6 +169,36 @@ namespace CMSTest
                 x = true;
             }
             Assert.AreEqual(true,x);
+        }
+        [TestMethod]
+        public void Test_AddTripToModel()
+        {
+            trips.Add(trip1);
+            trips.Add(trip2);
+            TestDbContextTrip t_c_t = new TestDbContextTrip(trips);
+
+            Trip t = new Trip
+            {
+                id = 4,
+                source = "charlotte",
+                destination = "DC",
+                created_by = "Bhanu",
+                carAvailable = true,
+                vacant_seats = 2,
+                estimated_cost = 45,
+                description = "xyz"
+            };
+            t_c_t.Trips.Add(t);
+            Assert.AreEqual(t, t_c_t.Trips.Find(4));
+        }
+        [TestMethod]
+        public void Test_RemoveTripFromModel()
+        {
+            trips.Add(trip1);
+            trips.Add(trip2);
+            TestDbContextTrip t_c_t = new TestDbContextTrip(trips);
+            t_c_t.Trips.Remove(trip1);
+            Assert.AreEqual(null, t_c_t.Trips.Find(1));
         }
     }
 }
