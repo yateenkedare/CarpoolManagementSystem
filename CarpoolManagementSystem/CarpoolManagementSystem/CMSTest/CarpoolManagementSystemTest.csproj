@@ -116,15 +116,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\AccountControllerTest.cs" />
-    <Compile Include="DataDependencyTest.cs" />
+    <Compile Include="DataDependencyTest\Insertion_Retrieval_TestTrips.cs" />
+    <Compile Include="DataDependencyTest\Insertion_Retrieval_TestUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\TripControllerTest.cs" />
-    <Compile Include="TripClasses\DBTest.cs" />
-    <Compile Include="TripClasses\DBTestContext.cs" />
-    <Compile Include="TripClasses\TestDbContextTrip.cs" />
-    <Compile Include="TripClasses\TestDbsetTrip.cs" />
-    <Compile Include="TripClasses\TestTripDbset.cs" />
+    <Compile Include="MockTestClasses\TestTripContext.cs" />
+    <Compile Include="MockTestClasses\TestUserContext.cs" />
+    <Compile Include="MockTestClasses\Test_Trips.cs" />
+    <Compile Include="MockTestClasses\Test_Users.cs" />
+    <Compile Include="MockTestClasses\DBTest.cs" />
+    <Compile Include="MockTestClasses\DBTestContext.cs" />
+    <Compile Include="MockTestClasses\TestDbContextTrip.cs" />
+    <Compile Include="MockTestClasses\TestDbsetTrip.cs" />
+    <Compile Include="MockTestClasses\TestTripDbset.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CarpoolManagementSystem\CarpoolManagementSystem.csproj">

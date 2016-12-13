@@ -79,19 +79,7 @@ namespace CMSTest
             Assert.AreEqual(trip2, model[0]);
         }
 
-        [TestMethod]
-        public void ShowTripReturnTest()
-        {
-            var controller = new TripController();
-            var searchbarmodel = new SearchBarModel()
-            {
-                source = "charlotte",
-                destination = "new york",
-                date = "01/01/2026"
-            };
-            var result = controller.ShowTripData(searchbarmodel) as ViewResult;
-            Assert.AreEqual("ShowTripData", result.ViewName);
-        }
+        
 
         [TestMethod]
         public void TripdetailsReturnTest()
@@ -200,5 +188,19 @@ namespace CMSTest
             t_c_t.Trips.Remove(trip1);
             Assert.AreEqual(null, t_c_t.Trips.Find(1));
         }
+
+        //[TestMethod]
+        //public void ShowTripReturnTest()
+        //{
+        //    var controller = new TripController();
+        //    var searchbarmodel = new SearchBarModel()
+        //    {
+        //        source = "charlotte",
+        //        destination = "new york",
+        //        date = "01/01/2026"
+        //    };
+        //    var result = controller.ShowTripData(searchbarmodel) as ViewResult;
+        //    Assert.AreEqual("ShowTripData", result.ViewName);
+        //}
     }
 }
